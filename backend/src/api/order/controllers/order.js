@@ -23,7 +23,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
                             product_data: {
                                 name: item.title,
                             },
-                            unit_amount: Math.round(item.price * 100)
+                            unit_amount: Math.round((item.price - 0.01) * 100)
                         },
                         quantity: product.quantity,
                     }
@@ -47,8 +47,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
             return {stripeSession: session};
 
         } catch (error) {
-            ctx.response.status = 500;
-            return error
+            console.log(error);
         }
     }
 }));

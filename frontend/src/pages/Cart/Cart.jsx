@@ -31,7 +31,7 @@ const Cart = () => {
         total += item.quantity * (item.price - 0.01).toFixed(2)
       });
       return total.toFixed(2)
-  }
+    }
 
       const stripePromise = loadStripe(
         'pk_test_51Myvg3BjF97bv0UeSxalOPgjh72KJy75yZe7tPNqtgGybofN0BZQEJcNe7U3omqidQrFPbWEUhsvMW9VuozvDxVm00bmhDScMe'
@@ -60,7 +60,7 @@ const Cart = () => {
                 quantity: item.quantity + 1,
                 priceTotal: (item.quantity + 1) * item.price,
               };
-            }
+           }
             return item
           })
         })
