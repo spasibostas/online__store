@@ -5,7 +5,9 @@ import ItemInCart from '../../components/ItemInCart/ItemInCart';
 import { makeRequest } from '../../makeRequest';
 import { loadStripe } from '@stripe/stripe-js';
 import { removeItem, resetCart } from '../../redux/cartReducer';
+import { Link } from 'react-router-dom';
 import './Cart.scss'
+
 
 
 const Cart = () => {
@@ -88,7 +90,16 @@ const Cart = () => {
         return <ItemInCart item={item} key={item.id} handleDelete={handleDelete} increase={increase} decrease={decrease}/>
       })
 
-      if (cart.length < 1) return <h1 className='empty-cart'>Your cart is empty</h1>
+      if (cart.length < 1) return (
+        <div className='empty'>
+          <div className='empty-cart'>Your cart is empty</div>
+          <button className='cat-btn'>
+            <Link to="/" className='link'>
+              Go shopping
+            </Link>
+          </button>
+        </div>
+      )
 
     return (
         <div className='order-page'>

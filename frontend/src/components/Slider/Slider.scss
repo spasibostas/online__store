@@ -16,19 +16,26 @@
             object-fit: cover;
         }
     }
+
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
     
     .icons{
-        position: absolute;
-        width: fit-content;
+        width: 600px;
         display: flex;
-        right: 0;
-        left: 0;
-        margin: auto;
-        gap: 600px;
+        justify-content: space-between;
+        position: absolute;
         bottom: 100px;
-
+        
         .icon{
             cursor: pointer;
+
+            .arrow{
+                color: white;
+                font-size: 50px;
+            }
         }
     }
 }

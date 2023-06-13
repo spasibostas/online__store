@@ -47,19 +47,21 @@ const Slider = () => {
 
     return (
         <div className='slider'>
-            <div className='container' style={{transform: `translateX(-${currentSlide * 100}vw)`}}>
-                <img src={data[0]} alt="" />
-                <img src={data[1]} alt="" />
-                <img src={data[2]} alt="" />
-            </div>
+          <div className='container' style={{transform: `translateX(-${currentSlide * 100}vw)`}}>
+              <img src={data[0]} alt="" />
+              <img src={data[1]} alt="" />
+              <img src={data[2]} alt="" />
+          </div>
+          <div className='wrapper'>
             <div className='icons'>
                 <div className='icon' onClick={prevSlide}>
-                    <WestOutlinedIcon style={{color: 'white', fontSize: '50px'}}/>
+                  <WestOutlinedIcon className='arrow' />
                 </div>
                 <div className='icon' onClick={nextSlide}>
-                    <EastOutlinedIcon style={{color: 'white', fontSize: '50px'}}/>
+                  <EastOutlinedIcon  className='arrow' />
                 </div>
             </div>
+          </div>
         </div>
   )
 }

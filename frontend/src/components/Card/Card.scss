@@ -55,6 +55,8 @@
         h3{
             font-size: 18px;
             font-weight: 500;
+            margin: 0;
+            margin-bottom: 20px;
 
             &:first-child{
                 font-weight: 300;
@@ -64,4 +66,14 @@
         }
     }
 
+}
+
+@media  ( max-width: 768px){
+    .card{
+        gap: 10px;
+
+        .prices{
+            gap: 10px;
+        }
+    }
 }

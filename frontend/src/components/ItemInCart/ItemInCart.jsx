@@ -26,8 +26,8 @@ const ItemInCart = ({item, increase, decrease, handleDelete}) => {
                 </div>
                 <CountInCart quantity={quantity} increase={increase} decrease={decrease} id={id}/>
             </div>
-            <DeleteButton handleDelete={handleDelete} id={id}/>
         </div>
+        <DeleteButton handleDelete={handleDelete} id={id}/>
     </div>
   );
 }

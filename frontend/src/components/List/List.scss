@@ -1,5 +1,13 @@
 .list{
     display: flex;
-    justify-content: space-between;
+    gap: 50px;
     flex-wrap: wrap;
+
+}
+
+@media  ( max-width: 768px){
+    .list{
+        justify-content: center;
+        gap: 30px;
+    }
 }

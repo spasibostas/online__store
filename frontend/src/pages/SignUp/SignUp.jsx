@@ -50,10 +50,10 @@ const SignUp = () => {
       if (data?.error) {
         throw data?.error;
       } else {
-        // set the token
+
         setToken(data.jwt);
 
-        // set the user
+
         setUser(data.user);
 
         message.success(`Welcome to ONLINESTORE ${data.user.username}!`);

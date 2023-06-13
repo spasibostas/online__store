@@ -13,6 +13,7 @@
       }
   
       p{
+        margin: 0;
         flex:3;
         color:gray
       }
@@ -22,5 +23,35 @@
       display: flex;
       justify-content: center;
       gap: 50px;
+    }
+  }
+
+  @media  ( max-width: 768px){
+    .featuredProducts{
+      margin: 0;
+
+      .top{
+        padding: 30px 10px;
+        margin-bottom: 25px;
+
+        h1{
+          font-size: 24px;
+        }
+
+        p{
+          font-size: 14px;
+        }
+      }
+
+      .bottom{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+
+        .item:nth-child(n + 3){
+          display: none;
+        }
+      }
     }
   }

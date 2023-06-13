@@ -4,9 +4,10 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BalanceIcon from "@mui/icons-material/Balance";
 import { useParams } from 'react-router-dom';
 import useFetch from './../../hooks/useFetch';
-import { addToCart } from '../../redux/cartReducer';
+import { addToCart, removeItem } from '../../redux/cartReducer';
 import { useDispatch } from 'react-redux'
 import './Product.scss'
+import { makeButtonActive } from '../../redux/activeButtonReducer';
 
 const Product = () => {
 
@@ -15,6 +16,27 @@ const Product = () => {
   
   const dispatch = useDispatch();
   const { data, loading } = useFetch(`/products/${id}?populate=*`);
+
+  const [isActive, setIsActive] = useState(false)
+
+  const handleClick = ()=> {
+
+    setIsActive(prev => !prev)
+
+    isActive ? 
+      dispatch(removeItem(data.id))
+      : 
+      dispatch(addToCart({
+        id: data.id,
+        title: data.attributes.title,
+        desc: data.attributes.desc,
+        price: data.attributes.price,
+        priceTotal: data.attributes.priceTotal,
+        img: data.attributes.img.data.attributes.url,
+        quantity: data.attributes.quantity,
+      }))
+
+  }
 
   return (
     <div className="product">
@@ -48,17 +70,15 @@ const Product = () => {
             <p>
               {data?.attributes?.desc}
             </p>
-            <button className="add" onClick={() => dispatch(addToCart({
-              id: data.id,
-              title: data.attributes.title,
-              desc: data.attributes.desc,
-              price: data.attributes.price,
-              priceTotal: data.attributes.priceTotal,
-              img: data.attributes.img.data.attributes.url,
-              quantity: data.attributes.quantity,
-            }))}>
+            {isActive ? 
+              <button className="add active" onClick={() => handleClick()}>
+              <AddShoppingCartIcon /> DELETE FROM CART
+            </button>
+              :
+              <button className="add" onClick={() => handleClick()}>
               <AddShoppingCartIcon /> ADD TO CART
             </button>
+            }
             <div className="links">
               <div className="item">
                 <FavoriteBorderIcon /> ADD TO WISHLIST

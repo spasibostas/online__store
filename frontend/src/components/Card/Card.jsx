@@ -29,8 +29,7 @@ const Card = ({item}) => {
         <h2>{item?.attributes?.title}</h2>
         <span>{item?.attributes?.type}</span>
         <span>
-          {item?.attributes?.categories?.data[0].attributes.title},
-          {item?.attributes?.sub_categories.data[0].attributes.title}
+          {item?.attributes?.categories?.data[0].attributes.title}, {item?.attributes?.sub_categories.data[0].attributes.title}
         </span>
         <div className="prices">
           <h3>${(item?.attributes?.price + 19.99).toFixed(2)}</h3>
