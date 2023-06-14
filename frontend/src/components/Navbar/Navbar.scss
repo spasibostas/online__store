@@ -4,20 +4,21 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-  
+
       .left {
         display: flex;
         align-items: center;
         gap: 25px;
+        margin-left: 80px;
 
         .item {
           display: flex;
           align-items: center;
-          font-size: 18px;
+          font-size: 22px;
         }
       }
       .center {
-        font-size: 30px;
+        font-size: 40px;
         letter-spacing: 2px;
       }
       .right {
@@ -62,27 +63,21 @@
     }
   }
 
-
+  
   @media  ( max-width: 768px) {
     .navbar{
       .wrapper {
         padding: 10px 20px;
 
         .left {
-          gap: 10px;
-          margin-right: 30px;
   
           .item {
             font-size: 16px;
           }
-
-          .item:nth-child(-n + 2) {
-            display: none;
-          }
         }
 
         .center {
-          font-size: 25px;
+          font-size: 28px;
           letter-spacing: 1px;
         }
 

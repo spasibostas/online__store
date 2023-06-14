@@ -3,6 +3,9 @@
     gap: 50px;
     flex-wrap: wrap;
 
+    .item{
+        flex-basis: 280px;
+    }
 }
 
 @media  ( max-width: 768px){

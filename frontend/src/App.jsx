@@ -10,15 +10,19 @@ import UserProfile from "./pages/UserProfile/UserProfile";
 import Cart from "./pages/Cart/Cart";
 import { getToken } from "./helpers";
 import './app.scss'
+import Sidebar from "./components/Sidebar/Sidebar";
 
 
 
 const Layout = () => {
   return (
-    <div className="app">
+    <div className="app" id="App">
+      <Sidebar pageWrapId={"page-wrap"} outerContainerId={"App"}/>
+      <div id="page-wrap">
       <Navbar />
       <Outlet />
       <Footer />
+      </div>
     </div>
   )
 }

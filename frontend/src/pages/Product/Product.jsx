@@ -7,7 +7,6 @@ import useFetch from './../../hooks/useFetch';
 import { addToCart, removeItem } from '../../redux/cartReducer';
 import { useDispatch } from 'react-redux'
 import './Product.scss'
-import { makeButtonActive } from '../../redux/activeButtonReducer';
 
 const Product = () => {
 
@@ -35,7 +34,7 @@ const Product = () => {
         img: data.attributes.img.data.attributes.url,
         quantity: data.attributes.quantity,
       }))
-
+      
   }
 
   return (

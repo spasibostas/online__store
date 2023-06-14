@@ -26,7 +26,7 @@ const FeaturedProducts = ({ type }) => {
               ? "Something went wrong!"
               :loading 
               ? 'loading...' 
-              : data.map(item => <div className='item'><Card item={item} key={item.id} /></div>
+              : data.map(item => <div className='item' key={item.id}><Card item={item} key={item.id} /></div>
             )}
         </div>
     </div>
