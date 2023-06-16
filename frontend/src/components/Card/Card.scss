@@ -10,6 +10,7 @@
         height: 400px;
         overflow: hidden;
         position: relative;
+        border-radius: 5px;
 
         &:hover{
             .secondImg{
@@ -73,6 +74,12 @@
     .card{
         width: 280px;
         gap: 10px;
+        align-items: center;
+
+        .image{
+            width: 80%;
+            height: 300px;
+        }
 
         .prices{
             gap: 10px;

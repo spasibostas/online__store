@@ -57,10 +57,21 @@
         }
 
         .right {
-
             .catImg {
                 height: 250px;
                 margin-bottom: 30px;
+            }
+        }
+    }
+}
+
+@media ( max-width: 420px){
+    .products{
+        flex-direction: column;
+
+        .right{
+            .catImg {
+                display: none;
             }
         }
     }

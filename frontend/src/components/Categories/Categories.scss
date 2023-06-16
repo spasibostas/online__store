@@ -57,11 +57,25 @@
 
 @media  ( max-width: 768px){
     .categories{
+        height: 60vh;
         .row{
             button{
                 height: 35px;
                 min-width: 60px;
                 background-size: 1px 100px;
+            }
+        }
+    }
+}
+
+@media  ( max-width: 420px){
+    .categories{
+        height: 50vh;
+        .row{
+            button{
+                min-width: 50px;
+                height: 30px;
+                padding: 5px;
             }
         }
     }

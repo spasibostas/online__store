@@ -29,7 +29,7 @@
         .item {
           display: flex;
           align-items: center;
-          font-size: 18px;
+          font-size: 26px;
         }
 
         .icons {
@@ -38,10 +38,14 @@
           gap: 15px;
           color: #777;
           cursor: pointer;
+
+          .item{
+            font-size: 30px;
+          }
   
           .cartIcon {
             position: relative;
-            margin-top: 5px;
+            
   
             span {
               font-size: 12px;
@@ -84,14 +88,67 @@
         .right {
           gap: 10px;
   
-          .item {
-            font-size: 16px;
-          }
-
           .icons {
             gap: 10px;
+
+            .item{
+              font-size: 24px;
+            }
+
+            .cartIcon{
+
+              span {
+                font-size: 10px;
+                width: 17px;
+                height: 17px;
+                top: -8px;
+              }
+            }
           }
         }
     }
   }   
+}
+
+@media ( max-width: 420px){
+  .navbar{
+    .wrapper {
+      padding: 10px 20px;
+
+      .left {
+        margin-left: 40px;
+        gap: 15px;
+        .item {
+          font-size: 14px;
+        }
+      }
+
+      .center {
+        font-size: 20px;
+        letter-spacing: 1px;
+      }
+
+      .right {
+        gap: 5px;
+
+        .icons {
+          gap: 10px;
+
+          .item{
+            font-size: 22px;
+          }
+
+          .cartIcon{
+
+            span {
+              font-size: 10px;
+              width: 15px;
+              height: 15px;
+              top: -7px;
+            }
+          }
+        }
+      }
+  }
+}   
 }

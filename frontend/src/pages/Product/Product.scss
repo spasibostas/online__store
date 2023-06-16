@@ -11,6 +11,7 @@
             flex: 1;
 
             img{
+                border-radius: 5px;
                 width: 100%;
                 max-height: 150px;
                 object-fit: cover;
@@ -22,6 +23,7 @@
             flex: 5;
 
             img{
+                border-radius: 5px;
                 width: 100%;
                 max-height: 700px;
                 object-fit: cover;
@@ -181,6 +183,25 @@
 
             .add{
                 width: 200px;
+            }
+        }
+    }
+}
+
+@media ( max-width: 420px){
+    .product{
+        flex-direction: column;
+        .left{
+            flex-direction: column-reverse;
+
+            .images{
+                display: flex;
+                gap: 5px;
+
+                img{
+                    display: block;
+                    height: 150px;
+                }
             }
         }
     }

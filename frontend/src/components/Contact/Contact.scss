@@ -43,8 +43,18 @@
 
   @media  ( max-width: 768px){
     .contact{
+      padding: 10px;
       .wrapper{
         width: 100%;
+        gap: 20px;
+      }
+    }
+  }
+
+  @media  ( max-width: 420px){
+    .contact{
+      .wrapper{
+        flex-direction: column;
       }
     }
   }

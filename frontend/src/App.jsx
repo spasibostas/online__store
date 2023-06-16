@@ -19,9 +19,9 @@ const Layout = () => {
     <div className="app" id="App">
       <Sidebar pageWrapId={"page-wrap"} outerContainerId={"App"}/>
       <div id="page-wrap">
-      <Navbar />
-      <Outlet />
-      <Footer />
+        <Navbar />
+        <Outlet />
+        <Footer />
       </div>
     </div>
   )

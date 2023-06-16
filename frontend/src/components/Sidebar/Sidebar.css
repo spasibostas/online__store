@@ -70,4 +70,13 @@
       top: 22px;
     }
   }
+
+  @media ( max-width: 420px){
+    .bm-burger-button{
+      width: 25px;
+      height: 17px;
+      left: 20px;
+      top: 17px;
+    }
+  }
   

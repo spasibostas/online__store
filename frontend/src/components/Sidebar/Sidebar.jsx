@@ -11,7 +11,6 @@ export default props => {
     }
 
   return (
-    // Pass on our props
     <Menu {...props} isOpen={isOpen} onOpen={handleOpenSidebar}>
       <a className="menu-item" href="/">
         Homepage

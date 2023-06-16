@@ -39,3 +39,15 @@
         }
     }
 }
+
+@media  ( max-width: 768px){
+    .slider{
+        height: calc(80vh - 80px);
+    }
+}
+
+@media  ( max-width: 420px){
+    .slider{
+        height: calc(80vh - 80px);
+    }
+}

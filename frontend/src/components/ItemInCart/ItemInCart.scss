@@ -90,3 +90,23 @@
         }
     }
 }
+
+@media  ( max-width: 768px){
+    .order{
+        gap: 5px;
+
+        .order-item{
+
+            .order-card{
+
+                .order-item__title{
+                    font-size: 20px;
+                }
+
+                .order-item__desc{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

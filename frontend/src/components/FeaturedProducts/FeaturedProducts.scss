@@ -40,6 +40,7 @@
       .top{
         padding: 30px 20px;
         margin-bottom: 25px;
+        margin-top: 20px;
 
         h1{
           font-size: 24px;
@@ -53,12 +54,29 @@
       .bottom{
         padding: 0px;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-wrap: wrap;
         gap: 15px;
+      }
+    }
+  }
 
-        .item:nth-child(n + 3){
-          display: none;
+  @media  ( max-width: 420px){
+    .featuredProducts{
+      
+      .top{
+        padding: 10px 15px;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+
+        h1{
+          display: block;
+          font-size: 20px;
+        }
+
+        p{
+          display: block;
+          font-size: 12px;
         }
       }
     }

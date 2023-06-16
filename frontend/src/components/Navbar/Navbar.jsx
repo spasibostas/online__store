@@ -5,7 +5,6 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux'
 import Profile from './../Profile/Profile';
-import Sidebar from '../Sidebar/Sidebar';
 import "./Navbar.scss"
 
 
@@ -43,9 +42,9 @@ const Navbar = () => {
         </div>
         <div className="right">
           <div className="icons">
-            <FavoriteBorderOutlinedIcon />
+            <FavoriteBorderOutlinedIcon className='item'/>
             <PersonOutlineOutlinedIcon
-              className="profileIcon"
+              className="item"
               onClick={() => setOpenProfile(!openProfile)}
             />
             <div className="cartIcon">
@@ -54,7 +53,7 @@ const Navbar = () => {
                 onClick={() => setOpenCart(!openCart)}
                 to="/basket"
               >
-                <ShoppingCartOutlinedIcon />
+                <ShoppingCartOutlinedIcon className='item'/>
               </Link>
               <span>{products.length}</span>
             </div>

@@ -108,7 +108,7 @@ const Cart = () => {
             </div>
             <div className="order-page__right">
                 <div className="order-page__total-price">
-                    <span>Total price: ${totalPrice()}</span>
+                  <span>Total price: ${totalPrice()}</span>
                 </div> 
                 <button onClick={handlePayment}>PROCEED TO CHECKOUT</button>
                 <div className='reset'>
