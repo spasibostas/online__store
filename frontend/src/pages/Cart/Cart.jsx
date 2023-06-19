@@ -9,27 +9,22 @@ import { Link } from 'react-router-dom';
 import './Cart.scss'
 
 
-
 const Cart = () => {
 
     const dispatch = useDispatch()
     const products = useSelector(state => state.cart.products)
 
-    const [cart, setCart] = useState(products);
-
     const handleDelete = (id) => {
       dispatch(removeItem(id));
-      setCart((cart) => cart.filter((product)=> id !== product.id));
     }
 
     const handleResetCart = () => {
       dispatch(resetCart())
-      setCart([])
     }
 
     const totalPrice = () => {
       let total = 0;
-      cart.forEach(item => {
+      products.forEach(item => {
         total += item.quantity * (item.price - 0.01).toFixed(2)
       });
       return total.toFixed(2)
@@ -53,44 +48,11 @@ const Cart = () => {
         }
       }
 
-      const increase = (id) => {
-        setCart((cart) => {
-          return cart.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                quantity: item.quantity + 1,
-                priceTotal: (item.quantity + 1) * item.price,
-              };
-           }
-            return item
-          })
-        })
-      }
-    
-      const decrease = (id) => {
-        setCart((cart) => {
-          return cart.map((item) => {
-            if (item.id === id) {
-    
-              const newCount = item.quantity - 1 > 1 ? item.quantity - 1 : 1;
-    
-              return {
-                ...item,
-                quantity: newCount,
-                priceTotal: newCount * item.price,
-              };
-            }
-            return item
-          })
-        })
-      }
-
-      const productsInCart = cart.map((item) => {
-        return <ItemInCart item={item} key={item.id} handleDelete={handleDelete} increase={increase} decrease={decrease}/>
+      const productsInCart = products.map((item) => {
+        return <ItemInCart item={item} key={item.id} handleDelete={handleDelete} />
       })
 
-      if (cart.length < 1) return (
+      if (products.length < 1) return (
         <div className='empty'>
           <div className='empty-cart'>Your cart is empty</div>
           <button className='cat-btn'>
