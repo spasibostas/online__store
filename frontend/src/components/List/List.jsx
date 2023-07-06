@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '../Card/Card'
 import useFetch from './../../hooks/useFetch'
 import './List.scss'
 
-const List = ({ subCats, sort, catId, page, minPrice, maxPrice }) => {
+const List = ({ subCats, sort, catId, currentPage, minPrice, maxPrice }) => {
   
   const qs = require('qs');
   const query = qs.stringify({
@@ -24,7 +24,7 @@ const List = ({ subCats, sort, catId, page, minPrice, maxPrice }) => {
     },
     sort: `price:${sort}`,
     pagination: {
-      page: `${page}`,
+      page: `${currentPage}`,
       pageSize: 6
     } 
   }, 

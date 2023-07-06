@@ -20,7 +20,9 @@ const Layout = () => {
       <Sidebar pageWrapId={"page-wrap"} outerContainerId={"App"}/>
       <div id="page-wrap">
         <Navbar />
-        <Outlet />
+        <div className="outlet">
+          <Outlet />
+        </div>
         <Footer />
       </div>
     </div>
@@ -66,9 +68,7 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+    <RouterProvider router={router} />
   );
 }
 

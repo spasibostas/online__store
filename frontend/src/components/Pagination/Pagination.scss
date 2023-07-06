@@ -1,0 +1,38 @@
+$color: linear-gradient(90deg, rgba(40,121,254,1) 72%, rgba(0,212,255,1) 100%) !global;
+
+.pagination{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    .current-page{
+        font-size: 20px;
+    }
+
+    .pagination-items{
+        display: flex;
+        gap: 20px;
+    }
+    
+    .pagination-item{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 28px;
+        height: 28px;
+        color: #000;
+        font-size: 16px;
+        transition: 0.25s ease;
+        cursor: pointer;
+
+        a{
+            padding: 5px;
+        }
+    }
+
+    .is-active{
+        background: $color;
+        border-radius: 14px;
+        color: #fff;
+    }
+}

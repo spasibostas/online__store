@@ -69,7 +69,8 @@ const SignIn = () => {
   };
 
   return (
-    <Fragment>
+    <div className="loginPage">
+      <Fragment>
       <Row align="middle">
         <Col span={isDesktopView ? 8 : 24} offset={isDesktopView ? 8 : 0}>
           <Card title="SignIn">
@@ -126,6 +127,7 @@ const SignIn = () => {
         </Col>
       </Row>
     </Fragment>
+    </div>
   );
 };
 

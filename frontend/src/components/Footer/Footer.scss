@@ -1,5 +1,6 @@
 .footer {
-    padding: 50px 200px 20px 200px;
+    padding: 20px 50px;
+    background-color: #EDEDED;
 
     .top{
         display: flex;
@@ -95,14 +96,15 @@
                     font-size: 16px;
                 }
 
-                span{
-                    display: block;
-                }
-            }    
-        }
+                 span{
+                     display: block;
+                 }
+             }    
+         }
 
-        .bottom{
-            flex-direction: column-reverse;
-        }
-    }
-}
+         .bottom{
+             flex-direction: column-reverse;
+         }
+     }
+} 
+

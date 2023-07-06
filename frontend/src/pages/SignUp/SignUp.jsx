@@ -58,7 +58,7 @@ const SignUp = () => {
 
         message.success(`Welcome to ONLINESTORE ${data.user.username}!`);
 
-        navigate("/userprofile", { replace: true });
+        navigate("/", { replace: true });
       }
     } catch (error) {
       console.error(error);
@@ -85,7 +85,8 @@ const SignUp = () => {
   }, [password, passwordConfirm])
     
   return (
-    <Fragment>
+    <div className="signupPage">
+      <Fragment>
       <Row align="middle">
         <Col span={isDesktopView ? 8 : 24} offset={isDesktopView ? 8 : 0}>
           <Card title="SignUp">
@@ -163,6 +164,7 @@ const SignUp = () => {
         </Col>
       </Row>
     </Fragment>
+    </div>
   );
 };
 

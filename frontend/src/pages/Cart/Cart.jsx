@@ -55,9 +55,12 @@ const Cart = () => {
       if (products.length < 1) return (
         <div className='empty'>
           <div className='empty-cart'>Your cart is empty</div>
-          <button className='cat-btn'>
+          <button className="cta">
             <Link to="/" className='link'>
-              Go shopping
+              <span className="hover-underline-animation"> Go shopping </span>
+              <svg viewBox="0 0 46 16" height="10" width="30" xmlns="http://www.w3.org/2000/svg" id="arrow-horizontal">
+              <path transform="translate(30)" d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" data-name="Path 10" id="Path_10"></path>
+              </svg>
             </Link>
           </button>
         </div>
@@ -72,9 +75,12 @@ const Cart = () => {
                 <div className="order-page__total-price">
                   <span>Total price: ${totalPrice()}</span>
                 </div> 
-                <button onClick={handlePayment}>PROCEED TO CHECKOUT</button>
+                <button className="payment-btn" onClick={handlePayment}>
+                  Proceed to checkout
+                  <svg className="svgIcon" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path></svg>
+                </button>
                 <div className='reset'>
-                  <div>Reset Cart</div>
+                  <span>Reset cart</span>
                   <DeleteOutlinedIcon className='delete' onClick={() => handleResetCart()} />
                 </div>
             </div>

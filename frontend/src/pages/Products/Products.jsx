@@ -1,11 +1,9 @@
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import List from './../../components/List/List';
-import Typography from '@mui/material/Typography';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 import Slider from 'react-slider'
+import Pagination from '../../components/Pagination/Pagination';
 import './Products.scss'
 
 const Products = () => {
@@ -16,14 +14,13 @@ const Products = () => {
   const catId = parseInt(useParams().id)
   const [sort, setSort] = useState('asc');
   const [selectedSubCats, setSelectedSubCats] = useState([]);
-  const [page, setPage] = useState(1);
   const [values, setValues] = useState([MIN, MAX])
+  const [productsPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const handlePageChange = (event, value) => {
-    setPage(value);
-  };
+  const paginate = pageNumber => setCurrentPage(pageNumber)
 
-  const { data } = useFetch(
+  const { subCategories } = useFetch(
     `/sub-categories?[filters][categories][id][$eq]=${catId}`
   )
 
@@ -35,14 +32,14 @@ const Products = () => {
   }
 
   return (
-    <div className='products'>
+    <div className='products' id='products'>
       <div className='left'>
         <div className="filterItem">
           <h2>Product Categories</h2>
-          {data?.map((item) => (
+          {subCategories?.map((item) => (
             <div className="inputItem" key={item.id}>
               <div className='input'>
-                <input type="checkbox" id={item.id} value={item.id} onChange={handleChange}/>
+                <input className="ui-checkbox" type="checkbox" id={item.id} value={item.id} onChange={handleChange}/>
                 <label htmlFor={item.id}>{item.attributes.title}</label>
               </div>
             </div>
@@ -67,15 +64,17 @@ const Products = () => {
             </div>
           </div>
         </div>
-        <div className="filterItem">
-          <div className="inputItem">
-            <input type="radio" id='asc' value="asc" name='price' onChange={(e) => setSort("asc")}/>
-            <label htmlFor="asc">Price (Lowest first)</label>
-          </div>
-          <div className="inputItem">
-            <input type="radio" id='desc' value="desc" name='price' onChange={(e) => setSort("desc")}/>
-            <label htmlFor="desc">Price (Highest first)</label>
-          </div>
+        <div class="container">
+          <form>
+            <label htmlFor="asc">
+              <input type="radio" id='asc' value="asc" name="radio" onChange={(e) => setSort("asc")}/>
+              <span>Lowest first</span>
+            </label>
+            <label>
+              <input type="radio" id='desc' value="desc" name="radio" onChange={(e) => setSort("desc")}/>
+              <span>Highest first</span>
+            </label>
+          </form>
         </div>
       </div>
       <div className='right'>
@@ -91,13 +90,8 @@ const Products = () => {
           alt="" 
         />
         }
-        <List page={page} catId={catId} minPrice={values[0]} maxPrice={values[1]} sort={sort} subCats={selectedSubCats}/>
-        <div className="pages">
-          <Stack spacing={2}>
-            <Typography className='pagination'>Page: {page}</Typography>
-            <Pagination count={2} page={page} onChange={handlePageChange} />
-          </Stack>
-        </div>
+        <List currentPage={currentPage} catId={catId} minPrice={values[0]} maxPrice={values[1]} sort={sort} subCats={selectedSubCats}/>
+        <Pagination currentPage={currentPage} productsPerPage={productsPerPage} totalProducts={12} paginate={paginate}/>
       </div>
     </div>
   )

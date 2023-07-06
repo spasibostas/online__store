@@ -21,7 +21,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="navbar">
+    <div className="navbar" id='navbar'>
       <div className="wrapper">
         <div className="left">
           <div className="item">

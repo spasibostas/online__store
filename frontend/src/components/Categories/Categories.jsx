@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import './Categories.scss'
 
 const Categories = () => {
@@ -12,9 +11,9 @@ const Categories = () => {
               alt="" 
           />
           <button className='cat-btn'>
-              <Link to="/products/1" className='link'>
+              <a href="/products/1" className='link'>
                 Sale
-              </Link>
+              </a>
           </button>
         </div>
         <div className='row'>
@@ -23,9 +22,9 @@ const Categories = () => {
             alt=""
         />
           <button className='cat-btn'>
-            <Link to="/products/2" className="link">
-              Women
-            </Link>
+          <a href="/products/2" className='link'>
+            Women
+          </a>
           </button>
         </div>
       </div>
@@ -37,9 +36,9 @@ const Categories = () => {
             alt=""
           />
           <button className='cat-btn'>
-            <Link to="/products/1" className="link">
-              New Season
-            </Link>
+          <a href="/products/1" className='link'>
+            New season
+          </a>
           </button>
         </div>
       </div>
@@ -52,9 +51,9 @@ const Categories = () => {
                 alt=""
               />
               <button className='cat-btn'>
-                <Link to="/products/1" className="link">
-                  Men
-                </Link>
+              <a href="/products/2" className='link'>
+                Men
+              </a>
               </button>
             </div>
           </div>
@@ -66,9 +65,9 @@ const Categories = () => {
                 alt=""
               />
               <button className='cat-btn'>
-                <Link to="/products/1" className="link">
-                  Accessories
-                </Link>
+              <a href="/products/1" className='link'>
+                Accessories
+              </a>
               </button>
             </div>
           </div>
@@ -79,9 +78,9 @@ const Categories = () => {
             alt=""
           />
           <button className='cat-btn'>
-            <Link to="/products/2" className="link">
-              Shoes
-            </Link>
+          <a href="/products/2" className='link'>
+            Shoes
+          </a>
           </button>
         </div>
       </div>
