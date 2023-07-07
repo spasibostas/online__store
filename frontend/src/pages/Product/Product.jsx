@@ -78,26 +78,11 @@ const Product = () => {
               <AddShoppingCartIcon /> ADD TO CART
             </button>
             }
-            <div className="links">
-              <div className="item">
-                <FavoriteBorderIcon /> ADD TO WISHLIST
-              </div>
-              <div className="item">
-                <BalanceIcon /> ADD TO COMPARE
-              </div>
-            </div>
             <div className="info">
               <span>Product Type: {data?.attributes?.type}</span>
               <span>Tag: {data?.attributes?.categories?.data[0].attributes.title}, {data?.attributes?.sub_categories.data[0].attributes.title}</span>
             </div>
             <hr />
-            <div className="info">
-              <span>DESCRIPTION</span>
-              <hr />
-              <span>ADDITIONAL INFORMATION</span>
-              <hr />
-              <span>FAQ</span>
-            </div>
           </div>
         </>
       )}

@@ -43,9 +43,6 @@ export const Profile = ({ toggle }) => {
               </>
             ) : (
               <>
-                {/* <Button className="auth_button_login" href="/login" type="link">
-                  Login
-                </Button> */}
                 <button className="login" onClick={handleClickLogin}>
                   <span>Login</span>
                 </button>

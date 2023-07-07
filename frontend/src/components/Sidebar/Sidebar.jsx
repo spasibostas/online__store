@@ -1,32 +1,32 @@
 import React, { useState } from "react";
-import { slide as Menu } from "react-burger-menu";
-import './Sidebar.css'
+import { SidebarData } from "./SidebarData";
+import { Link } from 'react-router-dom';
+import  CloseIcon from '@mui/icons-material/Close';
+import './Sidebar.scss'
 
-export default props => {
-
-    const [isOpen, setIsOpen] = useState(false)
-
-    const handleOpenSidebar = () => {
-        setIsOpen(prev => !prev)
-    }
-
+const Sidebar = ({showSidebar, sidebar}) => {
+    
   return (
-    <Menu {...props} isOpen={isOpen} onOpen={handleOpenSidebar}>
-      <a className="menu-item" href="/">
-        Homepage
-      </a>
-
-      <a className="menu-item" href="/">
-        About
-      </a>
-
-      <a className="menu-item" href="/">
-        Contact
-      </a>
-
-      <a className="menu-item" href="/">
-        Stores
-      </a>
-    </Menu>
+    <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+      <ul className="nav-menu-items" onClick={showSidebar}>
+        <li className="navbar-toggle">
+          <Link to="#" className="menu-icon">
+            <CloseIcon style={{ color: "#f5f5f5" }} />
+          </Link>
+        </li>
+        {SidebarData.map((item, index) => {
+          return (
+            <li key={index} className={item.cName}>
+              <Link to={item.path}>
+                {item.icon}
+                <span>{item.title}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 };
+
+export default Sidebar;

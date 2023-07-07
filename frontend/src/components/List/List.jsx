@@ -29,7 +29,7 @@ const List = ({ subCats, sort, catId, currentPage, minPrice, maxPrice }) => {
     } 
   }, 
   {
-  encodeValuesOnly: true, // prettify URL
+  encodeValuesOnly: true,
 });
 
 const { data, loading } = useFetch(
@@ -39,7 +39,7 @@ const { data, loading } = useFetch(
   return (
     <div className="list">
       {loading
-        ? "loading"
+        ? "loading..."
         : data?.map((item) => <div className='item' key={item.id}><Card item={item} key={item.id} /></div>)}
     </div>
   )

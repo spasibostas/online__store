@@ -4,6 +4,7 @@ import useFetch from '../../hooks/useFetch';
 import List from './../../components/List/List';
 import Slider from 'react-slider'
 import Pagination from '../../components/Pagination/Pagination';
+import Accordion from './../../components/Accordion/Accordion';
 import './Products.scss'
 
 const Products = () => {
@@ -27,7 +28,6 @@ const Products = () => {
   const handleChange = (e) => {
     const value = e.target.value;
     const isChecked = e.target.checked;
-
     setSelectedSubCats(isChecked ? [...selectedSubCats, value] : selectedSubCats.filter((item) => item !== value))
   }
 
@@ -35,15 +35,7 @@ const Products = () => {
     <div className='products' id='products'>
       <div className='left'>
         <div className="filterItem">
-          <h2>Product Categories</h2>
-          {subCategories?.map((item) => (
-            <div className="inputItem" key={item.id}>
-              <div className='input'>
-                <input className="ui-checkbox" type="checkbox" id={item.id} value={item.id} onChange={handleChange}/>
-                <label htmlFor={item.id}>{item.attributes.title}</label>
-              </div>
-            </div>
-          ))}
+          <Accordion subCategories={subCategories} handleChange={handleChange}/>
         </div>
         <div className="filterItem">
           <div className='filters'>

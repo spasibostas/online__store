@@ -5,6 +5,7 @@
     align-items: flex-start;
     gap: 20px;
     padding-top: 40px;
+    height: 30vh;
 
     .empty-cart{
         font-size: 40px;
@@ -155,6 +156,7 @@
 @media  ( max-width: 768px){
     .empty{
         padding-bottom: 40px;
+        min-height: 20vh;
         .empty-cart{
             font-size: 35px;
         }
@@ -193,6 +195,7 @@
     .empty{
         padding-top: 15px;
         padding-left: 30px;
+        height: 10vh;
         .empty-cart{
             font-size: 26px;
         }
@@ -211,6 +214,7 @@
             width: 100%;
             gap: 20px;
             flex-direction: column-reverse;
+            align-items: flex-start;
 
             .order-page__total-price{
                 align-self: flex-start;
