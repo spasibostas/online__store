@@ -24,7 +24,7 @@ const useFetch = (url) => {
           setLoading(false);
         }
         fetchData()
-      }, 700)
+      }, 500)
     }, [url])
 
       return {data, dataList, subCategories, loading, setLoading, error}
