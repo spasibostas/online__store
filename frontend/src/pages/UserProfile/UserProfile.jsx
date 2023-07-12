@@ -104,7 +104,7 @@ const UserProfile = () => {
               name="about"
               rules={[
                 {
-                  required: true,
+                  required: false,
                   type: "string",
                   max: 120,
                 },

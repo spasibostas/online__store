@@ -21,7 +21,7 @@ export default function BasicAccordion({handleChange, subCategories}) {
 
   return (
     <div>
-      <Accordion elevation={0} sx={{ width: '90%' }}>
+      <Accordion elevation={0} sx={{ width: '70%' }}>
         <AccordionSummary
           sx={{ padding: '0px' }}
           expandIcon={<ExpandMoreIcon />}

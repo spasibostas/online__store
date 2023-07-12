@@ -14,7 +14,7 @@ const Pagination = ({ currentPage, productsPerPage, totalProducts, paginate }) =
         <div className="pagination-items">
             {pageNumbers.map(number => (
                 <div key={number} className={`pagination-item ${currentPage === number ? "is-active" : ""}`}>
-                    <a href="#products" onClick={() => paginate(number)} className='link'>
+                    <a href="#" onClick={() => paginate(number)} className='link'>
                     {number}
                     </a>
                 </div>

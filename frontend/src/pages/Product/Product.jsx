@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import BalanceIcon from "@mui/icons-material/Balance";
 import { useParams } from 'react-router-dom';
 import useFetch from './../../hooks/useFetch';
 import { addToCart, removeItem } from '../../redux/cartReducer';
 import { useDispatch } from 'react-redux'
+import Loader from '../../components/Loader/Loader';
 import './Product.scss'
 
 const Product = () => {
@@ -39,10 +38,9 @@ const Product = () => {
 
   return (
     <div className="product">
-      {loading ? (
-        "loading..."
-      ) : (
-        <>
+      {loading ? 
+        <Loader />
+      : <>
           <div className="left">
             <div className="images">
               <img
@@ -85,7 +83,7 @@ const Product = () => {
             <hr />
           </div>
         </>
-      )}
+      }
     </div>
   );
 }

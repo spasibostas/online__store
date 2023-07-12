@@ -1,4 +1,4 @@
-import {createBrowserRouter, RouterProvider, Outlet, Routes, Route, Navigate} from "react-router-dom";
+import {createBrowserRouter, RouterProvider, Outlet, Navigate} from "react-router-dom";
 import Home from './pages/Home/Home';
 import Products from "./pages/Products/Products";
 import Product from "./pages/Product/Product";
@@ -9,8 +9,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import Cart from "./pages/Cart/Cart";
 import { getToken } from "./helpers";
-import './app.scss'
-
+import './app.scss';
 
 const Layout = () => {
   return (

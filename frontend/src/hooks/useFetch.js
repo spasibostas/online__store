@@ -4,16 +4,19 @@ import { makeRequest } from './../makeRequest';
 const useFetch = (url) => {
 
     const [data, setData] = useState([]);
+    const [dataList, setDataList] = useState([]);
     const [subCategories, setSubCategories] = useState([])
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     useEffect(() => {
+      setLoading(true)
+      setTimeout(() => {
         const fetchData = async () => {
           try {
-            setLoading(true);
             const res = await makeRequest.get(url)
             setData(res.data.data)
+            setDataList(res.data.data)
             setSubCategories(res.data.data)
           } catch (error) {
             setError(true);
@@ -21,9 +24,10 @@ const useFetch = (url) => {
           setLoading(false);
         }
         fetchData()
-      }, [url])
+      }, 700)
+    }, [url])
 
-        return {data, subCategories, loading, error}
+      return {data, dataList, subCategories, loading, setLoading, error}
 }
 
 export default useFetch;

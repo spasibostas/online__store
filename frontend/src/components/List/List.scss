@@ -1,11 +1,31 @@
 .list{
-    display: flex;
-    gap: 50px;
-    flex-wrap: wrap;
-    padding-bottom: 20px;
 
-    .item{
-        flex-basis: 280px;
+    .list-empty{
+        display: flex;
+        height: 80vh;
+        justify-content: center;
+        align-items: center;
+
+        span{
+            font-size: 30px;
+        }
+    }
+
+    .list-items{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        margin-bottom: 20px;
+
+        .item{
+            flex-basis: 280px;
+            width: 28%;
+        }
+
+        .loading{
+            opacity: 0.6;
+            background: #fff;
+        }
     }
 }
 
@@ -14,4 +34,8 @@
         justify-content: center;
         gap: 0px;
     }
+}
+
+@media  ( max-width: 420px){
+    
 }

@@ -12,13 +12,13 @@
 }
 
 .auth_button_login{
-    font-family: Menlo, Roboto Mono, monospace;
+    font-family: 'Oswald', sans-serif;
     font-size: 16px;
     color: black;
 }
 
 .logout {
-    font-family: Menlo, Roboto Mono, monospace;
+    font-family: 'Oswald', sans-serif;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -100,7 +100,7 @@
     --btn_letter_spacing: 0.0625em;
     /* btn font */
     --btn_font_size: 16px;
-    --btn_font_weight: bold;
+    --btn_font_weight: normal;
     --btn_font_family: Menlo, Roboto Mono, monospace;
     /* btn transition */
     --btn-transition: .3s cubic-bezier(0.75, 0, 0.125, 1);
@@ -114,7 +114,7 @@
     background-color: var(--btn_hover_bg);
     padding: 3px 10px;
     font-weight: var(--btn_font_weight);
-    font-family: Menlo, Roboto Mono, monospace;
+    font-family: 'Oswald', sans-serif;
     font-size: var(--btn_font_size);
     cursor: pointer;
     position: relative;
@@ -152,19 +152,19 @@
     --hover-color: #111;
     --arrow-width: 10px;
     --arrow-stroke: 2px;
-    font-family: Menlo, Roboto Mono, monospace;
+    font-family: 'Oswald', sans-serif;
     font-size: 16px;
     box-sizing: border-box;
     border: 0;
     border-radius: 20px;
     color: var(--secondary-color);
-    padding: 3px 10px;
+    padding: 1px 10px;
     background: #555;
     display: flex;
     transition: 0.2s background;
     align-items: center;
     gap: 0.6em;
-    font-weight: bold;
+    font-weight: normal;
     cursor: pointer;
   }
   

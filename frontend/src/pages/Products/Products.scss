@@ -1,12 +1,12 @@
 .products {
     display: flex;
-    padding: 0px 50px 50px 50px;
+    padding: 30px 50px 50px 50px;
 
     .left {
         flex: 1;
         position: sticky;
         height: 80%;
-        top: 100px;
+        top: 90px;
 
         .container form {
             display: flex;
@@ -228,60 +228,13 @@
                         }
 
                     }
-
-                    .filters-price__inputs{
-                        display: flex;
-                        gap: 20px;
-
-                        .filters-price__label{
-                            display: flex;
-                            align-items: center;
-                            min-width: 100px;
-                            height: 40px;
-                            border: 1px solid #D9D9D9;
-                            border-radius: 4px;
-
-                            .filters-price__text{
-                                font-size: 16px;
-                                color: #808080;
-                            }
-
-                            .filters-price__text:first-child{
-                                margin-right: 10px;
-                            }
-
-                            .filters-price__text:first-child{
-                                margin-left: 15px;
-                            }
-                            
-
-                            .filters-price__input{
-                                border: none;
-                                color: #4D4D4D;
-                                font-size: 14px;
-                            }
-
-                            input::-webkit-outer-spin-button,
-                            input::-webkit-inner-spin-button {
-                            -webkit-appearance: none;
-                            margin: 0;
-                            }
-                        }
-                    }
                 }
             }
         }
     }
 
     .right {
-        flex: 3;
-
-        .catImg {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            margin-bottom: 50px;
-        }
+        flex: 2;
 
         .pages{
 
@@ -328,13 +281,6 @@
                 }
             }
         }
-
-        .right {
-            .catImg {
-                height: 250px;
-                margin-bottom: 30px;
-            }
-        }
     }
 }
 
@@ -344,6 +290,26 @@
 
         .left{
             position: static;
+    
+            .filterItem {
+
+                .filters{
+
+                    .filters-price{
+
+                        .filters-price__slider{
+
+                            .filters-slider{
+                                width: 70%;
+                            }
+                        }
+                    }
+                }
+
+                h2{
+                    font-size: 20px;
+                }
+            }
         }
 
         .right{
@@ -352,9 +318,6 @@
             flex-direction: column;
             align-items: center;
 
-            .catImg {
-                display: none;
-            }
 
             .pages{
 
