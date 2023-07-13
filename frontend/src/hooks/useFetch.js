@@ -11,7 +11,6 @@ const useFetch = (url) => {
 
     useEffect(() => {
       setLoading(true)
-      setTimeout(() => {
         const fetchData = async () => {
           try {
             const res = await makeRequest.get(url)
@@ -24,7 +23,6 @@ const useFetch = (url) => {
           setLoading(false);
         }
         fetchData()
-      }, 500)
     }, [url])
 
       return {data, dataList, subCategories, loading, setLoading, error}

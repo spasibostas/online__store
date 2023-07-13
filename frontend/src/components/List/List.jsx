@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Card from '../Card/Card'
 import useFetch from './../../hooks/useFetch'
 import Pagination from '../Pagination/Pagination'
 import './List.scss'
 
-const List = ({ subCats, sort, catId, currentPage, minPrice, maxPrice, productsPerPage, paginate }) => {
+const List = ({ subCats, sort, catId, currentPage, minPrice, maxPrice, productsPerPage, paginate, changeThrottleHandle }) => {
 
   const qs = require('qs');
   const query = qs.stringify({
@@ -33,13 +33,13 @@ const List = ({ subCats, sort, catId, currentPage, minPrice, maxPrice, productsP
   encodeValuesOnly: true,
 });
 
-  const { data, loading } = useFetch(
+  const { data } = useFetch(
     `/products?${query}`
   );
 
   return (
     <div className="list">
-      {loading 
+      {changeThrottleHandle 
         ? <>
             <div className='list-items'>
               {data?.map((item) => (<div className='item loading' key={item.id}><Card item={item} key={item.id} /></div>))}

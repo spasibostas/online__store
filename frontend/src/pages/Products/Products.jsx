@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import List from './../../components/List/List';
@@ -18,6 +18,9 @@ const Products = () => {
   const [values, setValues] = useState([MIN, MAX])
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(6);
+  const [changeThrottleHandle, setChangeThrottleHandle] = useState(false);
+
+  const throttleInProgress = useRef();
 
   const {loading} = useFetch()
 
@@ -35,9 +38,27 @@ const Products = () => {
   )
 
   const handleChange = (e) => {
+    handleThrottleChange();
     const value = e.target.value;
     const isChecked = e.target.checked;
     setSelectedSubCats(isChecked ? [...selectedSubCats, value] : selectedSubCats.filter((item) => item !== value))
+  }
+
+  const handleThrottleChange = () => {
+
+    if (throttleInProgress.current) { return; }
+    throttleInProgress.current = true;
+
+    setTimeout(() => {
+      setChangeThrottleHandle((prevState) => {
+        return !prevState;
+      });
+      throttleInProgress.current = false;
+    }, 500);
+
+    setChangeThrottleHandle((prevState) => {
+      return !prevState;
+  });
   }
 
   return (
@@ -64,7 +85,10 @@ const Products = () => {
                     className='filters-slider' 
                     min={MIN} 
                     max={MAX} 
-                    onAfterChange={setValues}
+                    onAfterChange={(e) => {
+                      setValues(e)
+                      handleThrottleChange()
+                    }}
                   />
                 </div>
               </div>
@@ -73,18 +97,24 @@ const Products = () => {
           <div class="container">
             <form>
               <label htmlFor="asc">
-                <input type="radio" id='asc' value="asc" name="radio" onChange={(e) => setSort("asc")}/>
+                <input type="radio" id='asc' value="asc" name="radio" onChange={(e) => {
+                  setSort("asc")
+                  handleThrottleChange()
+                  }}/>
                 <span>Lowest first</span>
               </label>
               <label>
-                <input type="radio" id='desc' value="desc" name="radio" onChange={(e) => setSort("desc")}/>
+                <input type="radio" id='desc' value="desc" name="radio" onChange={(e) => {
+                  setSort("desc")
+                  handleThrottleChange()
+                  }}/>
                 <span>Highest first</span>
               </label>
             </form>
           </div>
         </div>
         <div className='right'>
-          <List paginate={paginate} productsPerPage={productsPerPage} currentPage={currentPage} catId={catId} minPrice={values[0]} maxPrice={values[1]} sort={sort} subCats={selectedSubCats}/>
+          <List changeThrottleHandle={changeThrottleHandle} paginate={paginate} productsPerPage={productsPerPage} currentPage={currentPage} catId={catId} minPrice={values[0]} maxPrice={values[1]} sort={sort} subCats={selectedSubCats}/>
         </div>
       </div>
       }
