@@ -1,4 +1,5 @@
 import React from 'react'
+import * as qs from 'qs'
 import Card from '../Card/Card'
 import useFetch from './../../hooks/useFetch'
 import Pagination from '../Pagination/Pagination'
@@ -6,7 +7,6 @@ import './List.scss'
 
 const List = ({ subCats, sort, catId, currentPage, minPrice, maxPrice, productsPerPage, paginate, changeThrottleHandle }) => {
 
-  const qs = require('qs');
   const query = qs.stringify({
     populate: '*',
     filters: {
