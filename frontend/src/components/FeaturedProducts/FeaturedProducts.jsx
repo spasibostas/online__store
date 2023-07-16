@@ -1,12 +1,25 @@
 import React from 'react'
+import * as qs from 'qs'
 import Card from '../Card/Card'
 import useFetch from '../../hooks/useFetch'
 import './FeaturedProducts.scss'
 
 const FeaturedProducts = ({ type }) => {
 
+  const query = qs.stringify({
+    populate: '*',
+    filters: {
+      type: {
+        $eq: `${type}`,
+      },
+    }, 
+  }, 
+  {
+  encodeValuesOnly: true,
+});
+
   const {data, loading, error} = useFetch(
-    `/products?populate=*&[filters][type][$eq]=${type}`
+    `/products?${query}`
   )
   
   return (

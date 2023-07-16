@@ -25,7 +25,7 @@ const Products = () => {
 
   const paginate = (pageNumber) => {
     window.scrollTo({
-      top: 90,
+      top: 0,
       left: 0,
       behavior: "smooth"
     });
