@@ -1,6 +1,7 @@
 $color: linear-gradient(90deg, rgba(40,121,254,1) 72%, rgba(0,212,255,1) 100%) !global;
 
 .pagination{
+    position: absolute;
     display: flex;
     align-items: center;
     gap: 40px;

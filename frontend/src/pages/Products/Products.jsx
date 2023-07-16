@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react'
+import * as qs from 'qs'
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import List from './../../components/List/List';
 import Slider from 'react-slider'
 import Accordion from './../../components/Accordion/Accordion';
 import Loader from '../../components/Loader/Loader';
+import Pagination from '../../components/Pagination/Pagination';
 import './Products.scss'
 
 const Products = () => {
@@ -35,6 +37,40 @@ const Products = () => {
   const { subCategories } = useFetch(
     `/sub-categories?[filters][categories][id][$eq]=${catId}`
   )
+
+  const query = qs.stringify({
+    populate: '*',
+    filters: {
+      categories: {
+        id: `${catId}`,
+      },
+      sub_categories: {
+        id: {
+          $eq: selectedSubCats
+        },
+      },
+      price: {
+        $gt: values[0],
+        $lte: values[1]
+      },
+    },
+    sort: `price:${sort}`,
+    pagination: {
+      page: `${currentPage}`,
+      pageSize: 6,
+    } 
+  }, 
+  {
+  encodeValuesOnly: true,
+});
+
+  const { data } = useFetch(
+    `/products?${query}`
+  );
+
+  const { totalProducts, productsPerPage} = useFetch(
+    `/products?${query}`
+  );
 
   const handleChange = (e) => {
     handleThrottleChange();
@@ -67,63 +103,96 @@ const Products = () => {
 
   return (
     <>
-      {loading ?
+      {loading ? (
         <Loader />
-       :
-      <div className='products' id='products'>
-        <div className='left'>
-          <div className="filterItem">
-            <Accordion subCategories={subCategories} handleChange={handleChange}/>
-          </div>
-          <div className="filterItem">
-            <div className='filters'>
-              <div className='filters-price'>
-                <h3>Sort by price</h3>
-                <div className='values'>${values[0]} - ${values[1]}</div>
-                <small>
-                  Current range: ${values[1] - values[0]}
-                </small>
-                <div className="filters-price__slider" id='slider'>
-                  <Slider 
-                    value={values} 
-                    className='filters-slider' 
-                    min={MIN} 
-                    max={MAX} 
-                    onAfterChange={(e) => {
-                      setValues(e)
-                      handleThrottleChange()
-                    }}
-                  />
+      ) : (
+        <div className="products" id="products">
+          <div className="left">
+            <div className="filterItem">
+              <Accordion
+                subCategories={subCategories}
+                handleChange={handleChange}
+              />
+            </div>
+            <div className="filterItem">
+              <div className="filters">
+                <div className="filters-price">
+                  <h3>Sort by price</h3>
+                  <div className="values">
+                    ${values[0]} - ${values[1]}
+                  </div>
+                  <small>Current range: ${values[1] - values[0]}</small>
+                  <div className="filters-price__slider" id="slider">
+                    <Slider
+                      value={values}
+                      className="filters-slider"
+                      min={MIN}
+                      max={MAX}
+                      onAfterChange={(e) => {
+                        setValues(e);
+                        handleThrottleChange();
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="container">
+              <form>
+                <label htmlFor="asc">
+                  <input
+                    type="radio"
+                    id="asc"
+                    value="asc"
+                    name="radio"
+                    onChange={(e) => {
+                      setSort("asc");
+                      handleThrottleChange();
+                    }}
+                  />
+                  <span>Lowest first</span>
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    id="desc"
+                    value="desc"
+                    name="radio"
+                    onChange={(e) => {
+                      setSort("desc");
+                      handleThrottleChange();
+                    }}
+                  />
+                  <span>Highest first</span>
+                </label>
+              </form>
+            </div>
           </div>
-          <div class="container">
-            <form>
-              <label htmlFor="asc">
-                <input type="radio" id='asc' value="asc" name="radio" onChange={(e) => {
-                  setSort("asc")
-                  handleThrottleChange()
-                  }}/>
-                <span>Lowest first</span>
-              </label>
-              <label>
-                <input type="radio" id='desc' value="desc" name="radio" onChange={(e) => {
-                  setSort("desc")
-                  handleThrottleChange()
-                  }}/>
-                <span>Highest first</span>
-              </label>
-            </form>
+          <div className="right">
+            <List
+              data={data}
+              changeThrottleHandle={changeThrottleHandle}
+              paginate={paginate}
+              currentPage={currentPage}
+              catId={catId}
+              minPrice={values[0]}
+              maxPrice={values[1]}
+              sort={sort}
+              subCats={selectedSubCats}
+            />
+            {data?.length < 1 ? null : (
+              <Pagination
+                productsPerPage={productsPerPage}
+                paginate={paginate}
+                totalProducts={totalProducts}
+                currentPage={currentPage}
+              />
+            )}
           </div>
         </div>
-        <div className='right'>
-          <List changeThrottleHandle={changeThrottleHandle} paginate={paginate} currentPage={currentPage} catId={catId} minPrice={values[0]} maxPrice={values[1]} sort={sort} subCats={selectedSubCats}/>
-        </div>
-      </div>
-      }
+      )}
     </>
-  )
+  );
 }
 
 export default Products;
