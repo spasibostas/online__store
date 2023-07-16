@@ -5,7 +5,7 @@ import useFetch from './../../hooks/useFetch'
 import Pagination from '../Pagination/Pagination'
 import './List.scss'
 
-const List = ({ subCats, sort, catId, currentPage, minPrice, maxPrice, productsPerPage, paginate, changeThrottleHandle }) => {
+const List = ({ subCats, sort, catId, minPrice, maxPrice, paginate, changeThrottleHandle, currentPage }) => {
 
   const query = qs.stringify({
     populate: '*',
@@ -26,14 +26,14 @@ const List = ({ subCats, sort, catId, currentPage, minPrice, maxPrice, productsP
     sort: `price:${sort}`,
     pagination: {
       page: `${currentPage}`,
-      pageSize: 6
+      pageSize: 6,
     } 
   }, 
   {
   encodeValuesOnly: true,
 });
 
-  const { data } = useFetch(
+  const { data, totalProducts, productsPerPage} = useFetch(
     `/products?${query}`
   );
 
@@ -44,13 +44,13 @@ const List = ({ subCats, sort, catId, currentPage, minPrice, maxPrice, productsP
             <div className='list-items'>
               {data?.map((item) => (<div className='item loading' key={item.id}><Card item={item} key={item.id} /></div>))}
             </div>
-            <div style={{display: 'none'}} className='list-pagination'>
-              <Pagination productsPerPage={productsPerPage} paginate={paginate} totalProducts={12} currentPage={currentPage}/>
+            <div className='list-pagination loading'>
+              <Pagination productsPerPage={productsPerPage} paginate={paginate} totalProducts={totalProducts} currentPage={currentPage}/>
             </div>
           </>
         :
         <>
-          {data.length < 1 ? 
+          {data?.length < 1 ? 
             <div className='list-empty'>
               <span>There are no products for this category and price</span>
             </div>
@@ -60,7 +60,7 @@ const List = ({ subCats, sort, catId, currentPage, minPrice, maxPrice, productsP
                 {data?.map((item) => (<div className='item' key={item.id}><Card item={item} key={item.id} /></div>))}
               </div>
               <div className='list-pagination'>
-                <Pagination productsPerPage={productsPerPage} paginate={paginate} totalProducts={12} currentPage={currentPage}/>
+                <Pagination productsPerPage={productsPerPage} paginate={paginate} totalProducts={totalProducts} currentPage={currentPage}/>
               </div>
             </>
           }

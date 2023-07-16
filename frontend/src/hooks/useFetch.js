@@ -3,20 +3,23 @@ import { makeRequest } from './../makeRequest';
 
 const useFetch = (url) => {
 
-    const [data, setData] = useState([]);
-    const [dataList, setDataList] = useState([]);
+    const [data, setData] = useState(null);
     const [subCategories, setSubCategories] = useState([])
+    const [productsPerPage, setProductsPerPage] = useState(0)
+    const [totalProducts, setTotalProducts] = useState(0)
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-      setLoading(true)
         const fetchData = async () => {
           try {
+            setLoading(true)
             const res = await makeRequest.get(url)
+            console.log(res.data.meta);
             setData(res.data.data)
-            setDataList(res.data.data)
             setSubCategories(res.data.data)
+            setProductsPerPage(res.data.meta.pagination.pageSize)
+            setTotalProducts(res.data.meta.pagination.total)
           } catch (error) {
             setError(true);
           }
@@ -25,7 +28,7 @@ const useFetch = (url) => {
         fetchData()
     }, [url])
 
-      return {data, dataList, subCategories, loading, setLoading, error}
+      return {data, subCategories, loading, setLoading, error, productsPerPage, totalProducts}
 }
 
 export default useFetch;

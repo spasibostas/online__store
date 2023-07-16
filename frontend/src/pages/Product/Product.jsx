@@ -17,6 +17,14 @@ const Product = () => {
 
   const [isActive, setIsActive] = useState(false)
 
+  const handleScroll = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  }
+
   const handleClick = ()=> {
 
     setIsActive(prev => !prev)
@@ -37,7 +45,7 @@ const Product = () => {
   }
 
   return (
-    <div className="product">
+    <div className="product" onLoad={handleScroll}>
       {loading ? 
         <Loader />
       : <>

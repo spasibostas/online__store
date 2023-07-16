@@ -1,5 +1,6 @@
 import React from "react";
 import './Pagination.scss'
+import useFetch from "../../hooks/useFetch";
 
 const Pagination = ({ currentPage, productsPerPage, totalProducts, paginate }) => {
 
@@ -8,18 +9,29 @@ const Pagination = ({ currentPage, productsPerPage, totalProducts, paginate }) =
     pageNumbers.push(i);
   }
 
+  const {loading} = useFetch()
+
   return (
-    <div className='pagination'>
-        <div className="current-page">Page: {currentPage}</div>
-        <div className="pagination-items">
-            {pageNumbers.map(number => (
-                <div key={number} className={`pagination-item ${currentPage === number ? "is-active" : ""}`}>
-                    <a href="#" onClick={() => paginate(number)} className='link'>
-                    {number}
-                    </a>
-                </div>
+    <div className="pagination">
+      {loading ? null : (
+        <>
+          <div className="current-page">Page: {currentPage}</div>
+          <div className="pagination-items">
+            {pageNumbers.map((number) => (
+              <div
+                key={number}
+                className={`pagination-item ${
+                  currentPage === number ? "is-active" : ""
+                }`}
+              >
+                <a href="#" onClick={() => paginate(number)} className="link">
+                  {number}
+                </a>
+              </div>
             ))}
-        </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

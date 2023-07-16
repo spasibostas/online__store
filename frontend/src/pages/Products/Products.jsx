@@ -17,7 +17,6 @@ const Products = () => {
   const [selectedSubCats, setSelectedSubCats] = useState([]);
   const [values, setValues] = useState([MIN, MAX])
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(6);
   const [changeThrottleHandle, setChangeThrottleHandle] = useState(false);
 
   const throttleInProgress = useRef();
@@ -41,7 +40,12 @@ const Products = () => {
     handleThrottleChange();
     const value = e.target.value;
     const isChecked = e.target.checked;
-    setSelectedSubCats(isChecked ? [...selectedSubCats, value] : selectedSubCats.filter((item) => item !== value))
+    setSelectedSubCats(
+      isChecked 
+      ? 
+      [...selectedSubCats, value] 
+      : selectedSubCats.filter((item) => item !== value))
+      setCurrentPage(1)
   }
 
   const handleThrottleChange = () => {
@@ -114,7 +118,7 @@ const Products = () => {
           </div>
         </div>
         <div className='right'>
-          <List changeThrottleHandle={changeThrottleHandle} paginate={paginate} productsPerPage={productsPerPage} currentPage={currentPage} catId={catId} minPrice={values[0]} maxPrice={values[1]} sort={sort} subCats={selectedSubCats}/>
+          <List changeThrottleHandle={changeThrottleHandle} paginate={paginate} currentPage={currentPage} catId={catId} minPrice={values[0]} maxPrice={values[1]} sort={sort} subCats={selectedSubCats}/>
         </div>
       </div>
       }
