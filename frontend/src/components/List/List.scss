@@ -38,9 +38,23 @@
     .list{
         justify-content: center;
         gap: 0px;
+
+        .list-items{
+            gap: 30px;
+            margin-bottom: 40px;
+        }
     }
 }
 
 @media  ( max-width: 420px){
+
+    .list{
+        .list-empty{
+            height: 40vh;
     
+            span{
+                font-size: 24px;
+            }
+        }
+    }
 }

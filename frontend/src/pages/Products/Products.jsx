@@ -3,10 +3,11 @@ import * as qs from 'qs'
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import List from './../../components/List/List';
-import Slider from 'react-slider'
-import Accordion from './../../components/Accordion/Accordion';
 import Loader from '../../components/Loader/Loader';
 import Pagination from '../../components/Pagination/Pagination';
+import FilterCategories from '../../components/FilterCategories/FilterCategories';
+import FilterPrice from '../../components/FilterPrice/FilterPrice';
+import FilterSort from '../../components/FilterSort/FilterSort';
 import './Products.scss'
 
 const Products = () => {
@@ -64,11 +65,7 @@ const Products = () => {
   encodeValuesOnly: true,
 });
 
-  const { data } = useFetch(
-    `/products?${query}`
-  );
-
-  const { totalProducts, productsPerPage} = useFetch(
+  const { data, totalProducts, productsPerPage } = useFetch(
     `/products?${query}`
   );
 
@@ -108,65 +105,9 @@ const Products = () => {
       ) : (
         <div className="products" id="products">
           <div className="left">
-            <div className="filterItem">
-              <Accordion
-                subCategories={subCategories}
-                handleChange={handleChange}
-              />
-            </div>
-            <div className="filterItem">
-              <div className="filters">
-                <div className="filters-price">
-                  <h3>Sort by price</h3>
-                  <div className="values">
-                    ${values[0]} - ${values[1]}
-                  </div>
-                  <small>Current range: ${values[1] - values[0]}</small>
-                  <div className="filters-price__slider" id="slider">
-                    <Slider
-                      value={values}
-                      className="filters-slider"
-                      min={MIN}
-                      max={MAX}
-                      onAfterChange={(e) => {
-                        setValues(e);
-                        handleThrottleChange();
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="container">
-              <form>
-                <label htmlFor="asc">
-                  <input
-                    type="radio"
-                    id="asc"
-                    value="asc"
-                    name="radio"
-                    onChange={(e) => {
-                      setSort("asc");
-                      handleThrottleChange();
-                    }}
-                  />
-                  <span>Lowest first</span>
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    id="desc"
-                    value="desc"
-                    name="radio"
-                    onChange={(e) => {
-                      setSort("desc");
-                      handleThrottleChange();
-                    }}
-                  />
-                  <span>Highest first</span>
-                </label>
-              </form>
-            </div>
+            <FilterCategories subCategories={subCategories} handleChange={handleChange}/>
+            <FilterPrice values={values} MIN={MIN} MAX={MAX} setValues={setValues} handleThrottleChange={handleThrottleChange}/>
+            <FilterSort setSort={setSort} handleThrottleChange={handleThrottleChange} />
           </div>
           <div className="right">
             <List

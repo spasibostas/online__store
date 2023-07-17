@@ -5,6 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { createTheme } from '@mui/material';
+import './Accordion.scss'
 
 export default function BasicAccordion({handleChange, subCategories}) {
 
@@ -20,7 +21,7 @@ export default function BasicAccordion({handleChange, subCategories}) {
       });
 
   return (
-    <div>
+    <div className='accordion'>
       <Accordion elevation={0} sx={{ width: '70%' }}>
         <AccordionSummary
           sx={{ padding: '0px' }}
