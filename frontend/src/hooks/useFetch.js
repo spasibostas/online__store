@@ -8,6 +8,7 @@ const useFetch = (url) => {
     const [productsPerPage, setProductsPerPage] = useState(0)
     const [totalProducts, setTotalProducts] = useState(0)
     const [loading, setLoading] = useState(false);
+    const [loadingPayment, setLoadingPayment] = useState(false);
     const [error, setError] = useState(false);
 
     useEffect(() => {
@@ -28,7 +29,7 @@ const useFetch = (url) => {
         fetchData()
     }, [url])
 
-      return {data, subCategories, loading, setLoading, error, productsPerPage, totalProducts}
+      return {data, subCategories, loading, setLoading, error, productsPerPage, totalProducts, loadingPayment, setLoadingPayment}
 }
 
 export default useFetch;

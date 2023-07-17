@@ -3,9 +3,9 @@ import DeleteButton from '../DeleteButton/DeleteButton';
 import CountInCart from '../CountInCart/CountInCart';
 import './ItemInCart.scss'
 
-const ItemInCart = ({item, handleDelete}) => {
+const ItemInCart = ({item, handleDelete, totalPrice}) => {
 
-  const {img, desc, id, priceTotal, quantity, title} = item
+  const {img, desc, id, quantity, title} = item
   return (
     <div className="order">
         <div className="order-item">
@@ -21,7 +21,7 @@ const ItemInCart = ({item, handleDelete}) => {
                 </div>
                 <div className="order-item__price">
                     <h3>${(item.price + 19.99).toFixed(2)}</h3>
-                    <h3>${priceTotal - 0.01}</h3>
+                    <h3>${totalPrice()}</h3>
                 </div>
                 <CountInCart quantity={quantity} id={id}/>
             </div>

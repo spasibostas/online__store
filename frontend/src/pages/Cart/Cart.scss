@@ -62,6 +62,17 @@
       }
 }
 
+.load{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+
+  span{
+    font-size: 22px;
+  }
+}
+
 .order-page {
     display: flex;
     justify-content: space-between;

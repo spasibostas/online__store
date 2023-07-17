@@ -2,7 +2,7 @@ import React from 'react'
 import Slider from 'react-slider'
 import './FilterPrice.scss'
 
-const FilterPrice = ({values, MIN, MAX, setValues, handleThrottleChange}) => {
+const FilterPrice = ({values, MIN, MAX, setValues, handleThrottleChange, setCurrentPage}) => {
   return (
     <div className="filterItem">
       <div className="filters">
@@ -21,6 +21,7 @@ const FilterPrice = ({values, MIN, MAX, setValues, handleThrottleChange}) => {
               onAfterChange={(e) => {
                 setValues(e);
                 handleThrottleChange();
+                setCurrentPage(1)
               }}
             />
           </div>

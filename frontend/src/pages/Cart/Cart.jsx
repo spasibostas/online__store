@@ -7,12 +7,16 @@ import { loadStripe } from '@stripe/stripe-js';
 import { removeItem, resetCart } from '../../redux/cartReducer';
 import { Link } from 'react-router-dom';
 import './Cart.scss'
+import useFetch from '../../hooks/useFetch';
+import Loader from '../../components/Loader/Loader';
 
 
 const Cart = () => {
 
     const dispatch = useDispatch()
     const products = useSelector(state => state.cart.products)
+
+    const{loadingPayment, setLoadingPayment} = useFetch()
 
     const handleDelete = (id) => {
       dispatch(removeItem(id));
@@ -36,6 +40,7 @@ const Cart = () => {
     
       const handlePayment = async () => {
         try {
+          setLoadingPayment(true)
           const stripe = await stripePromise;
           const res = await makeRequest.post("/orders", {
             products
@@ -46,10 +51,11 @@ const Cart = () => {
         } catch (error) {
           console.log(error);
         }
+        setLoadingPayment(false)
       }
 
       const productsInCart = products.map((item) => {
-        return <ItemInCart item={item} key={item.id} handleDelete={handleDelete} />
+        return <ItemInCart totalPrice={totalPrice} item={item} key={item.id} handleDelete={handleDelete} />
       })
 
       if (products.length < 1) return (
@@ -67,25 +73,37 @@ const Cart = () => {
       )
 
     return (
-        <div className='order-page'>
-            <div className='order-page__left'>
-                {productsInCart}
-            </div>
+      <>
+        {loadingPayment ? (
+          <div className='load'>
+            <span>Proceeding to checkout...</span>
+            <Loader />
+          </div>
+        ) : (
+          <div className="order-page">
+            <div className="order-page__left">{productsInCart}</div>
             <div className="order-page__right">
-                <div className="order-page__total-price">
-                  <span>Total price: ${totalPrice()}</span>
-                </div> 
-                <button className="payment-btn" onClick={handlePayment}>
-                  Proceed to checkout
-                  <svg className="svgIcon" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path></svg>
-                </button>
-                <div className='reset'>
-                  <span>Reset cart</span>
-                  <DeleteOutlinedIcon className='delete' onClick={() => handleResetCart()} />
-                </div>
+              <div className="order-page__total-price">
+                <span>Total price: ${totalPrice()}</span>
+              </div>
+              <button className="payment-btn" onClick={handlePayment}>
+                Proceed to checkout
+                <svg className="svgIcon" viewBox="0 0 576 512">
+                  <path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path>
+                </svg>
+              </button>
+              <div className="reset">
+                <span>Reset cart</span>
+                <DeleteOutlinedIcon
+                  className="delete"
+                  onClick={() => handleResetCart()}
+                />
+              </div>
             </div>
-        </div>
-    )
+          </div>
+        )}
+      </>
+    );
 }
 
 export default Cart

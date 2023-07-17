@@ -106,7 +106,7 @@ const Products = () => {
         <div className="products" id="products">
           <div className="left">
             <FilterCategories subCategories={subCategories} handleChange={handleChange}/>
-            <FilterPrice values={values} MIN={MIN} MAX={MAX} setValues={setValues} handleThrottleChange={handleThrottleChange}/>
+            <FilterPrice setCurrentPage={setCurrentPage} values={values} MIN={MIN} MAX={MAX} setValues={setValues} handleThrottleChange={handleThrottleChange}/>
             <FilterSort setSort={setSort} handleThrottleChange={handleThrottleChange} />
           </div>
           <div className="right">
